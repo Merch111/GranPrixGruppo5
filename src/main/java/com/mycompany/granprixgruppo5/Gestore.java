@@ -17,6 +17,7 @@ public class Gestore {
     String username;
     String password;
     String fileInput = "input.csv";
+    String fileGiocatori = "giocatori.csv";
     
     
     public void input() {
