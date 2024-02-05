@@ -15,7 +15,7 @@ public class Vigenere implements Runnable {
     private int fc;
     private Matrice matrix;
     
-    public Vigenere(int ir, int fr, int ic, int fc) {
+    public Vigenere(int ir, int fr, int ic, int fc, Matrice matrix) {
         this.ir = ir;
         this.fr = fr;
         this.ic = ic;
