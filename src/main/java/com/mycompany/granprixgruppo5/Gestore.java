@@ -7,6 +7,9 @@ import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedWriter;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -16,7 +19,6 @@ import java.io.BufferedWriter;
 public class Gestore {
     String username;
     String password;
-    String fileInput = "input.csv";
     String fileGiocatori = "giocatori.csv";
     
     
@@ -31,11 +33,11 @@ public class Gestore {
         
         scanner.close();
         
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileInput))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileGiocatori))) {
             writer.write("username-password");
         } catch (IOException e) {
             System.out.println("Errore di scrittura");
-        }
+        }      
     }
     
 }

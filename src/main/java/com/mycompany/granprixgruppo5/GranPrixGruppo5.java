@@ -18,17 +18,19 @@ public class GranPrixGruppo5 {
 
     public static void main(String[] args) {
         
-        
+        //INPUT
         Scanner scanner = new Scanner(System.in);
         System.out.println("Inserisci l'username: ");
         String username = scanner.nextLine();
         System.out.println("Inserisci la password: ");
         String password = scanner.nextLine().toUpperCase();
         
+        //CIFRATURA
         Cifratore cifratore = new Cifratore("BRUCO");
         String passwordCifrata = cifratore.cifra(password);
         
-        Scrittore scrittore = new Scrittore("fileDatiGiocatori.csv", username + ";" + passwordCifrata);
+        //SCRITTURA
+        Scrittore scrittore = new Scrittore("giocatori.csv", username + ";" + passwordCifrata);
         Thread threadScrittore = new Thread(scrittore);
         threadScrittore.start();
         try {

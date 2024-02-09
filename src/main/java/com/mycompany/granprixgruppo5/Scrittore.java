@@ -11,6 +11,7 @@ package com.mycompany.granprixgruppo5;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,29 +32,24 @@ public class Scrittore implements Runnable{
     }
 
     public void scrivi(){
-        BufferedWriter br=null;
         
+        FileWriter fw;
         try {
-            //1) apro il file
-            br = new BufferedWriter(
-                    new FileWriter(nomeFile));
-            //2) scrivo nel buffer
-            br.write(messaggio);
-            br.write("\n\r");
-            //3) svuoto il buffer e salvo nel file i dati
-            br.flush();         
+            fw = new FileWriter(nomeFile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            
+            pw.write(messaggio);
+            pw.write("\n\r");
+            
+            pw.flush();
+            pw.close();
+            bw.close();
+            fw.close();
+            
         } catch (IOException ex) {
-            Logger.getLogger(Scrittore.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally{
-            if (br!=null)
-                try {
-                    //4)chiudo lo stream in uscita
-                    br.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Scrittore.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            System.out.println("Errore nella scrittura in append della stringa");
+        } 
                 
         }
-    }
 }
