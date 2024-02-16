@@ -9,6 +9,7 @@ package com.mycompany.granprixgruppo5;
  *
  * @author elisa
  */
-public class Giocatore {
-    
+public class Giocatore extends Thread{
+    String username;
+    String password;
 }

@@ -19,25 +19,27 @@ import java.util.logging.Logger;
 public class Gestore {
     String username;
     String password;
+    int nGiocatori = 0;
+    
     String fileGiocatori = "giocatori.csv";
     
     
     public void input() {
         Scanner scanner = new Scanner(System.in);
         
+        System.out.println("Quanti giocatori gareggiano?: ");
+        nGiocatori = scanner.nextInt();
+        
+        for(int i = 0; i < nGiocatori; i++) {
+            
         System.out.println("Inserisci l'username: ");
         username = scanner.nextLine();
         
         System.out.println("Inserisci la password: ");
-        password = scanner.nextLine();
+        password = scanner.nextLine.().toUpperCase();
         
         scanner.close();
-        
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileGiocatori))) {
-            writer.write("username-password");
-        } catch (IOException e) {
-            System.out.println("Errore di scrittura");
-        }      
+        } 
     }
     
 }

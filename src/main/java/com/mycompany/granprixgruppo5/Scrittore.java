@@ -32,9 +32,30 @@ public class Scrittore implements Runnable{
     }
 
     public void scrivi(){
+        BufferedWriter br = null;
         
-        FileWriter fw;
         try {
+            br = new BufferedWriter(
+                    new FileWriter(nomeFile, true));
+            
+            br.write(messaggio);
+            br.write("\n\r");
+            
+            br.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(Scrittore.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally {
+            if (br!=null)
+                try {
+                    br.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(Scrittore.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        }
+ 
+        //FileWriter fw;
+        /*try {
             fw = new FileWriter(nomeFile, true);
             BufferedWriter bw = new BufferedWriter(fw);
             PrintWriter pw = new PrintWriter(bw);
@@ -50,6 +71,6 @@ public class Scrittore implements Runnable{
         } catch (IOException ex) {
             System.out.println("Errore nella scrittura in append della stringa");
         } 
-                
+        */        
         }
 }
