@@ -36,7 +36,7 @@ public class Gestore {
         username = scanner.nextLine();
         
         System.out.println("Inserisci la password: ");
-        password = scanner.nextLine.().toUpperCase();
+        password = scanner.nextLine().toUpperCase();
         
         scanner.close();
         } 
