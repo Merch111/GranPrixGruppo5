@@ -7,6 +7,9 @@ import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedWriter;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -16,27 +19,50 @@ import java.io.BufferedWriter;
 public class Gestore {
     String username;
     String password;
-    String fileInput = "input.csv";
+    int nGiocatori = 0;
+    
     String fileGiocatori = "giocatori.csv";
     
     
-    public void input() {
+    public String inputUsername() {
         Scanner scanner = new Scanner(System.in);
-        
+            
         System.out.println("Inserisci l'username: ");
         username = scanner.nextLine();
         
-        System.out.println("Inserisci la password: ");
-        password = scanner.nextLine();
         
         scanner.close();
         
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileInput))) {
-            writer.write("username-password");
-        } catch (IOException e) {
-            System.out.println("Errore di scrittura");
+        return username;
+        
+    }
+    
+    public String inputPassword() {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Inserisci la password: ");
+        password = scanner.nextLine().toUpperCase();
+        
+        scanner.close();
+        return password;
+    }
+    
+    
+    public void scriviEcifra(Giocatore g) {
+        Cifratore cifratore = new Cifratore("BRUCO");
+        String passwordCifrata = cifratore.cifra(g.password);
+        
+        Scrittore scrittore = new Scrittore("giocatori.csv", g.username + ";" + passwordCifrata + "-");
+        Thread threadScrittore = new Thread(scrittore);
+        threadScrittore.start();
+        try {
+            threadScrittore.join();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(GranPrixGruppo5.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     
+    
     
 }
 

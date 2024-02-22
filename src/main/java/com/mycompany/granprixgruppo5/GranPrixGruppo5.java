@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
  */
@@ -17,26 +17,37 @@ import java.util.logging.Logger;
 public class GranPrixGruppo5 {
 
     public static void main(String[] args) {
-        
-        
+        int nGiocatori = 0;
+        Gestore g1 = new Gestore();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Inserisci l'username: ");
-        String username = scanner.nextLine();
-        System.out.println("Inserisci la password: ");
-        String password = scanner.nextLine().toUpperCase();
         
-        Cifratore cifratore = new Cifratore("BRUCO");
-        String passwordCifrata = cifratore.cifra(password);
         
-        Scrittore scrittore = new Scrittore("fileDatiGiocatori.csv", username + ";" + passwordCifrata);
-        Thread threadScrittore = new Thread(scrittore);
-        threadScrittore.start();
-        try {
-            threadScrittore.join();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(GranPrixGruppo5.class.getName()).log(Level.SEVERE, null, ex);
+        
+        System.out.println("Quanti giocatori gareggiano?: ");
+        nGiocatori = scanner.nextInt();
+        
+        
+        Giocatore[] partecipanti = new Giocatore[nGiocatori];
+        
+        for(int i = 0; i < nGiocatori; i++) {
+            partecipanti[i].username = g1.inputUsername();
+            partecipanti[i].password = g1.inputPassword();
+            partecipanti[i] = new Giocatore(partecipanti[i].username, partecipanti[i].password);  
+            g1.scriviEcifra(partecipanti[i]);
+            partecipanti[i].velocita = partecipanti[i].impostaVelocita(nGiocatori);
+            
         }
-    }
-    
-    
+        
+        
+        for(int i = 0; i < nGiocatori; i++) {
+            partecipanti[i].start();
+            try {
+                partecipanti[i].join();
+            } catch (InterruptedException ex) {
+                Logger.getLogger(GranPrixGruppo5.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+       
+ }
 }
