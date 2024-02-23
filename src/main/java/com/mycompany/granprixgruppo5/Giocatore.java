@@ -28,15 +28,15 @@ public class Giocatore extends Thread{
         Giocatore[] partecipanti = new Giocatore[nPartecipanti];
         int numeroCasuale = 0;
         Random random = new Random();
-        for(int i = 0; i < nPartecipanti; i++) {
+        for(int i = 0; i <= nPartecipanti; i++) {
             numeroCasuale = random.nextInt(nPartecipanti);
         }
         return numeroCasuale;
     }
     
     public void gareggia() {
-        int lunghezzaCircuito = 100;
-        for(int i = 0; i < lunghezzaCircuito; i+=velocita) {
+        int lunghezzaCircuito = 3;
+        for(int i = 0; i <= lunghezzaCircuito; i+=velocita) {
         }
         System.out.println("Arrivato a fine Gara");
     }
