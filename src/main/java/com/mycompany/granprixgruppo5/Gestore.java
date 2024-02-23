@@ -23,27 +23,25 @@ public class Gestore {
     
     String fileGiocatori = "giocatori.csv";
     
+    Scanner scanner = new Scanner(System.in);
+    
     
     public String inputUsername() {
-        Scanner scanner = new Scanner(System.in);
             
         System.out.println("Inserisci l'username: ");
         username = scanner.nextLine();
         
-        
-        scanner.close();
-        
+               
         return username;
         
     }
     
     public String inputPassword() {
-        Scanner scanner = new Scanner(System.in);
         
         System.out.println("Inserisci la password: ");
-        password = scanner.nextLine().toUpperCase();
+        password = scanner.nextLine();
+        password = password.toUpperCase();
         
-        scanner.close();
         return password;
     }
     

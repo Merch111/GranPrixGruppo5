@@ -31,9 +31,9 @@ public class GranPrixGruppo5 {
         Giocatore[] partecipanti = new Giocatore[nGiocatori];
         
         for(int i = 0; i < nGiocatori; i++) {
-            partecipanti[i].username = g1.inputUsername();
-            partecipanti[i].password = g1.inputPassword();
-            partecipanti[i] = new Giocatore(partecipanti[i].username, partecipanti[i].password);  
+            String username = g1.inputUsername();
+            String password = g1.inputPassword();
+            partecipanti[i] = new Giocatore(username, password);  
             g1.scriviEcifra(partecipanti[i]);
             partecipanti[i].velocita = partecipanti[i].impostaVelocita(nGiocatori);            
         }
